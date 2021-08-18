@@ -15,7 +15,7 @@ class Pertama extends CI_Controller {
          $pesan = hx_info('info','Sesi anda masih aktif');
          $this->session->set_flashdata('hx_info', $pesan);
 
-		   redirect('mobile/login');
+		   redirect('admin/home');
       }
       else {
          redirect('admin/login');
