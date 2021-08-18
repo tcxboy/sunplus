@@ -658,6 +658,7 @@
 		  <div class="modal-body">
 			<b>Setting akun</b><br/>
 			
+			
 			<div class="slim"  data-ratio="0">
 														<?php if(@$this->us['foto']){?>
 															<img src="<?= base_url('as_back/foto_profil/'.$this->us['foto'].''); ?>" alt=""/>

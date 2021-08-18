@@ -19,7 +19,8 @@ class Enduser extends HX_Controller {
 	}
 	public function poinku()
 	{
-		  $now = date('Y-m-d');
+		 
+		 $now = date('Y-m-d');
 		  $load['reward'] = $this->mm->get('t_reward_poin',array('where'=>'t_reward_poin_status = "aktif"','order'=>'t_reward_poin_jmlpoin ASC'));
 		  $tpoin= $this->mm->get('t_enduser_poin',array('where'=>'t_user_id = '.$this->session->sess_user['t_user_id'].' AND t_enduser_poin_exp >= "'.$now.'"','order'=>'t_enduser_poin_exp ASC'));
 		  $poin=0;

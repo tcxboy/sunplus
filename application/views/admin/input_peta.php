@@ -120,6 +120,7 @@
    </div>
 </div>
 
+
 <?php
 $zoom  = ($result['t_user_lat'] && $result['t_user_lng']) ? '18' : '12';
 $titik = ($result['t_user_lat'] && $result['t_user_lng']) ? $result['t_user_lat'].','.$result['t_user_lng'] : ''.$result['t_propinsi_Latitude'].','.$result['t_propinsi_Longitude'].'';

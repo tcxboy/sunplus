@@ -172,8 +172,7 @@ if($toko){
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDECMLwt8UyWPgkKVqEqf5QGFcqOsP6VKs&language=id"></script>
 <script type="text/javascript">
     var Lokasi = [ <?= ($obj) ? implode(',',$obj) : ''; ?> ];
-
-   function initialize() {
+	function initialize() {
 	   
       var map = new google.maps.Map(document.getElementById('peta'), {
          zoom: 12,
