@@ -8,7 +8,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#3a57c4">
 <title>Sunplus</title>
 
-<link rel="shortcut icon" type="image/x-icon" href="<?php echo base_url('assets_mobile');?>/img/favicon.html">
+<link rel="icon" type="image/png" href="<?= base_url('as_back/img/logo-mini.png'); ?>" />
 
 <link rel="stylesheet" href="<?php echo base_url('assets_mobile');?>/css/bootstrap.min.css">
 
