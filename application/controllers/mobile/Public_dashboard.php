@@ -14,8 +14,8 @@ class public_dashboard extends HX_Controller {
 	}
 	public function toko_terdekat()
 	{
-		  $load['toko'] = $this->mm->get('t_user',array('where'=>'t_user_level = "store" AND t_user_aktif = "Y"'));
-		  $this->load->view('mobile/public/toko_terdekat',$load);
+		 $load['toko'] = $this->mm->get('t_user',array('join'=>array(array('t_propinsi','t_propinsi.t_propinsi_id = t_user.t_propinsi_id','left')),'where'=>'t_user_level = "store" AND t_user_aktif = "Y"'));
+		 $this->load->view('mobile/public/toko_terdekat',$load);
 	}
 	public function profil_toko($id=null)
 	{

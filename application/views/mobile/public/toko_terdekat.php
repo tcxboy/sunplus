@@ -98,7 +98,7 @@ p {
 	</header>
 
 
-	<div class="bannermap" style="height:200px">
+	<div class="bannermap" id="peta" style="height:200px">
 		
 	</div>
 
@@ -152,6 +152,160 @@ p {
 <script src="<?php echo base_url('assets_mobile');?>/plugins/swiper/js/swiper.min.js"></script>
 
 <script src="<?php echo base_url('assets_mobile');?>/js/script.js"></script>
+
+
+
+<?php
+$obj = array();
+if($toko){
+	foreach($toko as $r){
+		$cor1 = str_replace(".","",$r['t_user_lat']);
+		$fix_cor = substr_replace( $cor1,".",2,0);
+
+		$cor2 = str_replace(".","",$r['t_user_lng']);
+		$fix_cor2 = substr_replace( $cor2,".",3,0);
+		$obj[] = '['.$fix_cor.', '.$fix_cor2.', "'.@$r['nama_kepala'].'", "'.@$r['alamat'].'","'.@$r['desa'].'","'.@$r['kecamatan'].'","'.@$foto.'"]';
+	}
+}
+?>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDECMLwt8UyWPgkKVqEqf5QGFcqOsP6VKs&language=id"></script>
+<script type="text/javascript">
+    var Lokasi = [ <?= ($obj) ? implode(',',$obj) : ''; ?> ];
+	function initialize() {
+	   if (navigator.geolocation) {
+         navigator.geolocation.getCurrentPosition(function(pos) {
+
+            var objek = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
+
+             var map = new google.maps.Map(document.getElementById('peta'), {
+			 zoom: 12,
+			 center: objek,
+			 mapTypeId: google.maps.MapTypeId.roadmap,
+			 streetViewControl: true,
+			 mapTypeControl: false
+			 });
+			 var infowindow = new google.maps.InfoWindow();
+
+			  for (var i in Lokasi)
+			  {
+				 var p = Lokasi[i];
+				 var latlng = new google.maps.LatLng(p[0], p[1]);
+
+				
+				  var marker = new google.maps.Marker({
+					position: latlng,
+					map: map,
+					icon: "<?= base_url('as_back/img/map.png'); ?>",
+					title: p[2]
+				 });
+
+				 google.maps.event.addListener(marker, 'click', (function(marker, i) {
+				   return function() {
+					var contentString = '<div id="content">'+
+										'<h4 id="firstHeading" class="firstHeading"><b>'+Lokasi[i][2]+'</b></a></h4>'+
+										'<h5 id="firstHeading" class="firstHeading">Alamat : '+Lokasi[i][3]+'</a></h5>'+
+										'<h5 id="firstHeading" class="firstHeading">Kelurahan : '+Lokasi[i][4]+'</a></h5>'+
+										'<h5 id="firstHeading" class="firstHeading">Kecamatan : '+Lokasi[i][5]+'</a></h5>'+
+										'<div><img src="'+Lokasi[i][6]+'" width="310px" height="200px"></div>'+
+										 
+										'</div>';
+
+					   infowindow.setContent(contentString);
+					   infowindow.open(map, marker);
+					}
+				 })(marker, i));
+			  }
+
+         }, function() {
+            alert("Gagal mendapatkan lokasi.");
+			     var map = new google.maps.Map(document.getElementById('peta'), {
+				 zoom: 4,
+				 center: {lat: -2.31887, lng: 99.3489654},
+				 mapTypeId: google.maps.MapTypeId.roadmap,
+				 streetViewControl: true,
+				 mapTypeControl: false
+				});
+				var infowindow = new google.maps.InfoWindow();
+
+				  for (var i in Lokasi)
+				  {
+					 var p = Lokasi[i];
+					 var latlng = new google.maps.LatLng(p[0], p[1]);
+
+					
+					  var marker = new google.maps.Marker({
+						position: latlng,
+						map: map,
+						icon: "<?= base_url('as_back/img/map.png'); ?>",
+						title: p[2]
+					 });
+
+					 google.maps.event.addListener(marker, 'click', (function(marker, i) {
+					   return function() {
+						var contentString = '<div id="content">'+
+											'<h4 id="firstHeading" class="firstHeading"><b>'+Lokasi[i][2]+'</b></a></h4>'+
+											'<h5 id="firstHeading" class="firstHeading">Alamat : '+Lokasi[i][3]+'</a></h5>'+
+											'<h5 id="firstHeading" class="firstHeading">Kelurahan : '+Lokasi[i][4]+'</a></h5>'+
+											'<h5 id="firstHeading" class="firstHeading">Kecamatan : '+Lokasi[i][5]+'</a></h5>'+
+											'<div><img src="'+Lokasi[i][6]+'" width="310px" height="200px"></div>'+
+											 
+											'</div>';
+
+						   infowindow.setContent(contentString);
+						   infowindow.open(map, marker);
+						}
+					 })(marker, i));
+				  }
+			});
+      } else {
+         var map = new google.maps.Map(document.getElementById('peta'), {
+			 zoom: 4,
+			 center: {lat: -2.31887, lng: 99.3489654},
+			 mapTypeId: google.maps.MapTypeId.roadmap,
+			 streetViewControl: true,
+			 mapTypeControl: false
+		  });
+		  
+		  var infowindow = new google.maps.InfoWindow();
+
+		  for (var i in Lokasi)
+		  {
+			 var p = Lokasi[i];
+			 var latlng = new google.maps.LatLng(p[0], p[1]);
+
+			
+			  var marker = new google.maps.Marker({
+				position: latlng,
+				map: map,
+				icon: "<?= base_url('as_back/img/map.png'); ?>",
+				title: p[2]
+			 });
+
+			 google.maps.event.addListener(marker, 'click', (function(marker, i) {
+			   return function() {
+				var contentString = '<div id="content">'+
+									'<h4 id="firstHeading" class="firstHeading"><b>'+Lokasi[i][2]+'</b></a></h4>'+
+									'<h5 id="firstHeading" class="firstHeading">Alamat : '+Lokasi[i][3]+'</a></h5>'+
+									'<h5 id="firstHeading" class="firstHeading">Kelurahan : '+Lokasi[i][4]+'</a></h5>'+
+									'<h5 id="firstHeading" class="firstHeading">Kecamatan : '+Lokasi[i][5]+'</a></h5>'+
+									'<div><img src="'+Lokasi[i][6]+'" width="310px" height="200px"></div>'+
+									 
+									'</div>';
+
+				   infowindow.setContent(contentString);
+				   infowindow.open(map, marker);
+				}
+			 })(marker, i));
+		  }
+      }
+      
+
+      
+      //map.fitBounds(bounds);
+   }
+   google.maps.event.addDomListener(window, 'load', initialize);
+</script>
 </body>
 
 </html>
