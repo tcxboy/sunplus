@@ -11,7 +11,20 @@ class Enduser extends HX_Controller {
 
 	public function index()
 	{
-		  $this->load->view('mobile/enduser/dashboard');
+		  $now = date('Y-m-d');
+		  $tpoin= $this->mm->get('t_enduser_poin',array('where'=>'t_user_id = '.$this->session->sess_user['t_user_id'].' AND t_enduser_poin_exp >= "'.$now.'"','order'=>'t_enduser_poin_exp ASC'));
+		  $poin=0;
+		  if($tpoin){
+			  foreach($tpoin as $r){
+				  if($r['t_enduser_poin_jenis'] == 'akumulasi'){
+					  $poin += $r['t_enduser_poin_jml'];
+				  }else  if($r['t_enduser_poin_jenis'] == 'redeem' && $r['t_enduser_poin_redeem_status'] == 'disetujui'){
+					  $poin = $poin-$r['t_enduser_poin_jml'];
+				  }
+			  }
+		  }
+		  $load['totalpoin'] = $poin;
+		  $this->load->view('mobile/enduser/dashboard',$load);
 	}
 	public function profil()
 	{

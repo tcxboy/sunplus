@@ -93,11 +93,15 @@ a:active{
 					<div class="d-flex align-items-center">
 						
 						<div>
+						<a href="<?php echo base_url('mobile/enduser/cart');?>" class="btn btn-default btn-circle btn-circle-sm m-1" style="background-color:#fff;color:#003399"><i class="fa fa-shopping-cart"></i></a> 
 						<a href="#" data-toggle="dropdown" aria-expanded="true" class="link btn btn-primary btn-circle btn-circle-sm m-1"><i class="fa fa-user"></i></a>
 						    <div class="dropdown-menu dropdown-menu-right header_drop_icon">
+								 <a href="#" class="dropdown-item"><i class="feather-shopping-bag"></i> Semua Transaksi</a>
+								 <a href="#" class="dropdown-item"><i class="feather-refresh-ccw"></i> Reedem Poin</a>
 								 <a href="#" class="dropdown-item"><i class="feather-settings"></i> Pengaturan</a>
 								 <a href="<?php echo base_url('mobile/login/logout');?>" class="dropdown-item"><i class="feather-log-out"></i> Log Out</a>
 							</div>
+						
 						</div>
 					</div>
 				</div>
@@ -110,7 +114,7 @@ a:active{
 		<div class="container">
 			<div class="banner-content">
 				<div style="border:solid 4px #FFB904;padding:10px;float:right;border-radius:3px" class="pull-right">
-					<center><span style="color:#fff;font-size:9pt">total poinmu :</span><br/><b style="padding-top:5px;font-size:20pt;color:#FFB904">1234</b></center>
+					<center><span style="color:#fff;font-size:9pt">total poinmu :</span><br/><b style="padding-top:5px;font-size:20pt;color:#FFB904"><?php echo @$totalpoin;?></b></center>
 				</div>
 			</div>
 		
