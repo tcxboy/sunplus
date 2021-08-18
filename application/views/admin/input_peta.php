@@ -121,8 +121,8 @@
 </div>
 
 <?php
-$zoom  = ($result['t_user_lat'] && $result['t_user_lat']) ? '18' : '12';
-$titik = ($result['t_user_lat'] && $result['t_user_lat']) ? $result['t_user_lng'].','.$result['t_user_lng'] : ''.$result['t_propinsi_Latitude'].','.$result['t_propinsi_Longitude'].'';
+$zoom  = ($result['t_user_lat'] && $result['t_user_lng']) ? '18' : '12';
+$titik = ($result['t_user_lat'] && $result['t_user_lng']) ? $result['t_user_lat'].','.$result['t_user_lng'] : ''.$result['t_propinsi_Latitude'].','.$result['t_propinsi_Longitude'].'';
 ?>
 
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDECMLwt8UyWPgkKVqEqf5QGFcqOsP6VKs&language=id&libraries=places&callback=initAutocomplete" async defer></script>

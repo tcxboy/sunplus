@@ -665,9 +665,9 @@
 														<input type="file" id="unggah1" name="foto" />
 													</div>
 									
-			<div class="form-group"><label for="" class=" control-label">Email</label><input type="email" name="email" id="" value="<?php echo $this->us['username'];?>" class="form-control" data-original-title="" title=""></div>
+			<div class="form-group"><label for="" class=" control-label">Email</label><input type="email" name="email" id="" value="<?php echo @$this->us['username'];?>" class="form-control" data-original-title="" title=""></div>
 		  
-			<div class="form-group"><label for="" class=" control-label">Nomor WA</label><input type="number" name="wa" id="" value="<?php echo $this->us['wa'];?>" class="form-control" data-original-title="" title=""></div>
+			<div class="form-group"><label for="" class=" control-label">Nomor WA</label><input type="number" name="wa" id="" value="<?php echo @$this->us['wa'];?>" class="form-control" data-original-title="" title=""></div>
 		 
 			<div class="form-group"><label for="" class=" control-label">Kata Sandi</label><input type="password" name="password" id="password" value="" class="form-control" data-original-title="" title=""></div>
 			<button type="button" class="btn btn-default pull-right" data-dismiss="modal">Batal</button>

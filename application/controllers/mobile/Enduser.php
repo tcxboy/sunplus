@@ -28,7 +28,7 @@ class Enduser extends HX_Controller {
 				  if($r['t_enduser_poin_jenis'] == 'akumulasi'){
 					  $poin += $r['t_enduser_poin_jml'];
 				  }else  if($r['t_enduser_poin_jenis'] == 'redeem' && $r['t_enduser_poin_redeem_status'] == 'disetujui'){
-					  $poin = $poin-$r['t_enduser_poin_jml']-;
+					  $poin = $poin-$r['t_enduser_poin_jml'];
 				  }
 			  }
 		  }
@@ -37,7 +37,8 @@ class Enduser extends HX_Controller {
 	}
 	public function toko_terdekat()
 	{
-		  $load['toko'] = $this->mm->get('t_user',array('where'=>'t_user_level = "store" AND t_user_aktif = "Y"'));
+		  $load['toko'] = $this->mm->get('t_user',array('join'=>array(array('t_propinsi','t_propinsi.t_propinsi_id = t_user.t_propinsi_id','left')),'where'=>'t_user_level = "store" AND t_user_aktif = "Y"'));
+		  $load['profilku'] = $this->mm->get('t_user',array('join'=>array(array('t_propinsi','t_propinsi.t_propinsi_id = t_user.t_propinsi_id','left')),'where'=>'t_user_id = '.$this->session->sess_user['t_user_id'].''),'roar');
 		  $this->load->view('mobile/enduser/toko_terdekat',$load);
 	}
 	public function profil_toko($id=null)
