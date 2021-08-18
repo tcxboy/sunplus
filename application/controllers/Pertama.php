@@ -18,7 +18,7 @@ class Pertama extends CI_Controller {
 		   redirect('mobile/login');
       }
       else {
-         redirect('mobile/public_dashboard');
+         redirect('admin/login');
       }
 	}
 
