@@ -1,0 +1,42 @@
+		.thedataprint td { font-size:12pt;font-family: arial}
+        .thedataprint .moreheading td {font-family: arial;}
+        .thedataprint .garisbawah td {
+            border-bottom: 1px solid #000;
+        }
+        .thedataprint .garisbawah td td {
+            border: none;
+        }
+        .thedataprint .garisatas td {
+            border-top: 1px solid #000;
+        }
+        .thedataprint .garisatas td td {
+            border: none;
+        }
+        .j1{margin:0px;font-size:12pt;font-family: 'Arial Narrow'}
+        .j2{margin:0px;font-size:14pt;font-family: 'Arial Narrow';font-weight:bold}
+		.j3{margin:0px;font-size:9pt;font-family: 'Arial Narrow'}
+        .thedataprint h3 {margin: 0px 0 2px 0; padding: 0; letter-spacing: 2px; font-size: 16px;}
+        .thedataprint h1, .thedataprint h2, .thedataprint h3.tit { margin: 0px 0 2px 0; padding: 0; letter-spacing: 2px;}
+        .thedataprint h4 { letter-spacing: 2px; padding: 0; margin: 0;}
+        .thedataprint h2 { font-size: 22px;}
+        .portrait {font-size:12pt;margin-left: auto;margin-right: auto; font-family: arial;max-width: 24cm;color:#000000;}
+		 .alinea {font-size:12pt;}
+        .landscape { max-width: 33cm;}
+		.borderless table {
+			border-top-style: none;
+			border-left-style: none;
+			border-right-style: none;
+			border-bottom-style: none;
+		}
+		th, td {
+            padding-top: 1px;
+			padding-right: 2px;
+			padding-left: 2px;
+			padding-bottom: 1px;
+			
+        }
+		.MsoNormal{
+          margin: 0px;
+          
+        }
+		p{margin:0px}

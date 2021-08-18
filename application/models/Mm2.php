@@ -1,0 +1,239 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+class Mm2 extends CI_Model {
+
+   function __construct()
+   {
+      parent::__construct();
+	  $this->db2 = $this->load->database('default2',TRUE);
+   }
+
+	function get($table, $data=array(), $returnformat='rear')
+   {
+      $this->db2->from($table);
+
+      if (isset($data['select'])) $this->db2->select($data['select'], FALSE);
+
+      if (isset($data['join'])) {
+         foreach($data['join'] as $list){
+            $list[2] = isset($list[2]) ? $list[2] : '';
+            $this->db2->join($list[0], $list[1], $list[2]);
+         }
+      }
+
+		if (isset($data['where'])) $this->db2->where($data['where']);
+
+		if (isset($data['or_where'])) {
+         foreach ($data['or_where'] as $key=>$val){
+            $this->db2->or_where($key, $val);
+         }
+		}
+
+      if (isset($data['like'])) {
+         foreach ($data['like'] as $list){
+            $list[2] = isset($list[2]) ? $list[2] : '';
+            $this->db2->like($list[0], $list[1], $list[2]);
+         }
+      }
+
+      if (isset($data['or_like'])) {
+         foreach($data['or_like'] as $list){
+            $list[2] = isset($list[2]) ? $list[2] : '';
+            $this->db2->or_like($list[0], $list[1], $list[2]);
+         }
+      }
+
+		if (isset($data['limit'])) {
+		   $offset = (isset($data['offset'])) ? $data['offset']: null;
+			$this->db2->limit($data['limit'], $offset);
+      }
+
+		if (isset($data['order'])) {
+            $this->db2->order_by($data['order']);
+		}
+
+		if (isset($data['group'])) {
+         $this->db2->group_by($data['group']);
+      }
+
+		if (isset($data['having'])) {
+         $this->db2->having($data['having']);
+      }
+
+      $query = $this->db2->get();
+
+      switch ($returnformat) {
+         case 'rear' :
+            return $query->result_array();
+         break;
+         case 'roar' :
+            return $query->row_array();
+         break;
+      }
+	}
+
+	function count($table, $data=array())
+   {
+      $this->db2->from($table);
+
+      if (isset($data['join'])) {
+         foreach($data['join'] as $list){
+            $list[2] = isset($list[2]) ? $list[2] : '';
+            $this->db2->join($list[0], $list[1], $list[2]);
+         }
+      }
+
+		if (isset($data['where'])) $this->db2->where($data['where']);
+
+		if (isset($data['or_where'])) {
+         foreach ($data['or_where'] as $key=>$val){
+            $this->db2->or_where($key, $val);
+         }
+		}
+
+      if (isset($data['like'])) {
+         foreach ($data['like'] as $list){
+            $list[2] = isset($list[2]) ? $list[2] : '';
+            $this->db2->like($list[0], $list[1], $list[2]);
+         }
+      }
+
+      if (isset($data['or_like'])) {
+         foreach($data['or_like'] as $list){
+            $list[2] = isset($list[2]) ? $list[2] : '';
+            $this->db2->or_like($list[0], $list[1], $list[2]);
+         }
+      }
+
+		if (isset($data['group_by'])) {
+         $this->db2->group_by($data['group_by']);
+      }
+
+		return $this->db2->count_all_results();
+	}
+
+   function save($tabel, $data, $where=null)
+   {
+      if ($where) {
+         $this->db2->where($where);
+
+         if ($this->db2->update($tabel,$data)) {
+            return TRUE;
+         }
+         else {
+            return FALSE;
+         }
+      }
+      else {
+         if ($this->db2->insert($tabel,$data)) {
+            return $this->db2->insert_id();
+         }
+         else {
+            return FALSE;
+         }
+      }
+   }
+
+   function save_batch($tabel, $data, $where=array())
+   {
+      if ($where) {
+         $this->db2->where($where);
+         if ($this->db2->delete($tabel)) {
+            if ($this->db2->insert_batch($tabel,$data)) {
+               return TRUE;
+            }
+            else {
+               return FALSE;
+            }
+         }
+         else {
+            return FALSE;
+         }
+      }
+      else {
+         if ($this->db2->insert_batch($tabel,$data)) {
+            return TRUE;
+         }
+         else {
+            return FALSE;
+         }
+      }
+   }
+
+   function delete($tabel, $where=null)
+   {
+      if ($where) $this->db2->where($where);
+
+      if ($this->db2->delete($tabel)) {
+         return TRUE;
+      }
+      else {
+         return FALSE;
+      }
+   }
+
+   function query($sql, $returnformat=null)
+   {
+      $query = $this->db2->query($sql);
+
+      if ($returnformat) {
+         switch($returnformat) {
+            case 'rear' :
+               return $query->result_array();
+            break;
+            case 'roar' :
+               return $query->row_array();
+            break;
+         }
+      }
+   }
+
+   function tahun($a=null,$b=null)
+   {
+      $a = ($a) ? $a : (date('Y')-5);
+      $b = ($b) ? $b : date('Y');
+
+      for ($i=$a; $i<=$b; $i++) {
+         $tahun[$i] = $i;
+      }
+
+      return $tahun;
+   }
+
+   function bulan()
+   {
+      $bulan['01'] = 'Januari';
+      $bulan['02'] = 'Februari';
+      $bulan['03'] = 'Maret';
+      $bulan['04'] = 'April';
+      $bulan['05'] = 'Mei';
+      $bulan['06'] = 'Juni';
+      $bulan['07'] = 'Juli';
+      $bulan['08'] = 'Agustus';
+      $bulan['09'] = 'September';
+      $bulan['10'] = 'Oktober';
+      $bulan['11'] = 'November';
+      $bulan['12'] = 'Desember';
+
+      return $bulan;
+   }
+   function getnospt()
+	{
+		$q = $this->db2->query("select MAX(spt_no) as nospt from yoloo_data_spt");
+		$kd = "";
+		if($q->num_rows()>0)
+		{
+			foreach($q->result() as $k)
+			{
+				$kd = ((int)$k->nospt)+1;
+				
+			}
+		}
+		else
+		{
+			$kd = "1";
+		}	
+		return $kd;
+	}
+	
+}

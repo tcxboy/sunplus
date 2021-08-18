@@ -1,0 +1,13 @@
+
+
+div.frame {
+	max-width: 200px;
+	height: 200px;
+	margin-right: auto;
+    margin-left: auto;
+}
+
+.slim {
+	border-radius: 0.5rem;
+	border: 1px solid #eaeaea;
+}

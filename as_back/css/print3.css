@@ -1,0 +1,35 @@
+ .thedataprint td {font-size: 13px; font-family: times new roman, arial;line-height: 1.1}
+        .thedataprint .moreheading td {font-size: 15px; font-family: times new roman, arial;}
+        .thedataprint .garisbawah td {
+            border-bottom: 1px solid #000;
+        }
+        .thedataprint .garisbawah td td {
+            border: none;
+        }
+        .thedataprint .garisatas td {
+            border-top: 1px solid #000 !important;
+        }
+		
+		 .garissamping{
+            border-right: 1px solid #000 !important;
+        }
+        .thedataprint .garisatas td td {
+            border: none;
+        }
+		
+		th, td {
+            padding-top: 1px;
+			padding-right: 2px;
+			padding-left: 2px;
+			padding-bottom: 1px;
+        }
+        .thedataprint h3 {margin: 0px 0 2px 0; padding: 0; letter-spacing: 2px; font-size: 16px;}
+        .thedataprint h1, .thedataprint h2, .thedataprint h3.tit { margin: 0px 0 2px 0; padding: 0; letter-spacing: 2px;}
+        .thedataprint h4 { letter-spacing: 2px; padding: 0; margin: 0;}
+        .thedataprint h2 { font-size: 22px;}
+        .portrait { max-width: 21cm;align-content:center}
+        .landscape { min-width: 32cm;}
+		
+		@media print {
+.page-break { display: block; page-break-before: always; }
+}
